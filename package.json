@@ -69,7 +69,6 @@
     "blob-util": "^2.0.2",
     "canvas": "^2.8.0",
     "cross-env": "^7.0.2",
-    "dicom-test-files": "github:wearemothership/dicom-test-files#v1.0.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
