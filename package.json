@@ -49,6 +49,7 @@
     "@wearemothership/dicom-character-set": "^1.0.4-opt.1",
     "charls": "github:moritzmhmk/charls-js",
     "jpeg-lossless-decoder-js": "^v2.0.4",
+    "openjpeg": "github:moritzmhmk/openjpeg-js",
     "pako": "^1.0.10",
     "raw.macro": "^0.4.2",
     "sha1": "^1.1.1",

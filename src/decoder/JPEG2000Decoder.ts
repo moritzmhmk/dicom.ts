@@ -1,4 +1,4 @@
-import OpenJpeg from "./codecs/openjpeg";
+import OpenJPEG from "openjpeg";
 import Decoder from "./Decoder";
 import { getJpegData } from "./util";
 
@@ -15,7 +15,7 @@ class JPEG2000Decoder extends Decoder {
 			return Promise.reject(new Error("No JPEG2000 image data"));
 		}
 		return new Promise((resolve) => {
-			OpenJpeg().then((OJ: { J2KDecoder: new () => any; }) => {
+			OpenJPEG().then((OJ) => {
 				const decoder = new OJ.J2KDecoder();
 				const jpeg = this.jpegs![frameNo];
 				const buffer = new Uint8Array(jpeg.buffer, jpeg.byteOffset, jpeg.byteLength);
@@ -28,7 +28,7 @@ class JPEG2000Decoder extends Decoder {
 				}
 				decoder.getFrameInfo();
 				const decodedBuffer = decoder.getDecodedBuffer();
-				return resolve(decodedBuffer);
+				return resolve(new DataView(decodedBuffer));
 			});
 		});
 	}
