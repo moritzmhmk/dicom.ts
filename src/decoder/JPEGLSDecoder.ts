@@ -1,5 +1,5 @@
 import Decoder from "./Decoder";
-import CharLS from "./codecs/charlsjs";
+import CharLS from "charls";
 import { getJpegData } from "./util";
 
 class JPEGLosslessDecoder extends Decoder {
@@ -14,8 +14,7 @@ class JPEGLosslessDecoder extends Decoder {
 			return Promise.reject(new Error("No JPEG-LS image data"));
 		}
 		return new Promise((resolve) => {
-			(CharLS as any)({
-			}).then((charLS: { JpegLSDecoder: new () => any; }) => {
+			CharLS().then((charLS) => {
 				const decoder = new charLS.JpegLSDecoder();
 				const jpeg = this.jpegs![frameNo];
 				const buffer = new Uint8Array(jpeg.buffer, jpeg.byteOffset, jpeg.byteLength);
@@ -25,7 +24,7 @@ class JPEGLosslessDecoder extends Decoder {
 				decoder.decode();
 
 				const decoded = decoder.getDecodedBuffer();
-				return resolve(decoded);
+				return resolve(new DataView(decoded));
 			});
 		});
 	}
