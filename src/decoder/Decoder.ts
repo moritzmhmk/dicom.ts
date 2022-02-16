@@ -33,7 +33,7 @@ class Decoder implements IDecoder {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	protected decode(frameNo:number):Promise<DataView> {
+	protected decode(frameNo:number):Promise<ArrayBufferView> {
 		const { data, nFrames } = this.image;
 		const bytesPerFrame = data.byteLength / nFrames;
 		const dv = new DataView(

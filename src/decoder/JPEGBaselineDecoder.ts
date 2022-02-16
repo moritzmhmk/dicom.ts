@@ -6,7 +6,7 @@ import { getJpegData } from "./util";
 class JPEGLosslessDecoder extends Decoder {
 	private jpegs:DataView[] | null = null;
 
-	protected decode(frameNo:number):Promise<DataView> {
+	protected decode(frameNo:number):Promise<ArrayBufferView> {
 		const { image } = this;
 		if (!this.jpegs) {
 			this.jpegs = getJpegData(image.data);
@@ -20,7 +20,7 @@ class JPEGLosslessDecoder extends Decoder {
 
 		decoder.parse(buffer);
 		const { width, height } = decoder as unknown as ISize;
-		let decoded = null;
+		let decoded;
 		if (image.bitsAllocated === 8) {
 			decoded = decoder.getData(width, height);
 		}
@@ -28,7 +28,7 @@ class JPEGLosslessDecoder extends Decoder {
 			decoded = decoder.getData16(width, height);
 		}
 
-		return Promise.resolve(<DataView> <unknown> decoded!);
+		return Promise.resolve(decoded);
 	}
 }
 

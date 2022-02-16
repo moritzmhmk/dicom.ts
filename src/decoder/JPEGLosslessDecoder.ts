@@ -5,7 +5,7 @@ import { getJpegData } from "./util";
 class JPEGLosslessDecoder extends Decoder {
 	private jpegs:DataView[] | null = null;
 
-	protected decode(frameNo:number):Promise<DataView> {
+	protected decode(frameNo:number):Promise<ArrayBufferView> {
 		const { image } = this;
 		if (!this.jpegs) {
 			this.jpegs = getJpegData(image.data);

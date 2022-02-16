@@ -5,7 +5,7 @@ import { getEncapsulatedData } from "./util";
 class RLEDecoder extends Decoder {
 	private rleData: DataView[] | null = null;
 
-	protected decode(frameNo: number): Promise<DataView> {
+	protected decode(frameNo: number): Promise<ArrayBufferView> {
 		const { image } = this;
 		if (!this.rleData) {
 			const data = getEncapsulatedData(image.data);

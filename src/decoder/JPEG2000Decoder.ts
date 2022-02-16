@@ -5,7 +5,7 @@ import { getJpegData } from "./util";
 class JPEG2000Decoder extends Decoder {
 	private jpegs:DataView[] | null = null;
 
-	protected decode(frameNo:number):Promise<DataView> {
+	protected decode(frameNo:number):Promise<ArrayBufferView> {
 		const { image } = this;
 
 		if (!this.jpegs) {
@@ -28,7 +28,7 @@ class JPEG2000Decoder extends Decoder {
 				}
 				decoder.getFrameInfo();
 				const decoded = decoder.getDecodedBuffer();
-				return resolve(decoded as unknown as DataView); // TODO: consider using ArrayBuffer instead of casting to DataView
+				return resolve(decoded);
 			});
 		});
 	}

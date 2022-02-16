@@ -5,7 +5,7 @@ import { getJpegData } from "./util";
 class JPEGLosslessDecoder extends Decoder {
 	private jpegs:DataView[] | null = null;
 
-	decode(frameNo: number):Promise<DataView> {
+	decode(frameNo: number):Promise<ArrayBufferView> {
 		const { image } = this;
 		if (!this.jpegs) {
 			this.jpegs = getJpegData(image.data);
@@ -24,7 +24,7 @@ class JPEGLosslessDecoder extends Decoder {
 				decoder.decode();
 
 				const decoded = decoder.getDecodedBuffer();
-				return resolve(decoded as unknown as DataView); // TODO: consider using ArrayBuffer instead of casting to DataView
+				return resolve(decoded);
 			});
 		});
 	}
