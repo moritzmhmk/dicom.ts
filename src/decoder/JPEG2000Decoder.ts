@@ -27,8 +27,8 @@ class JPEG2000Decoder extends Decoder {
 					decoder.decodeSubResolution(decodeLevel, decodeLayer);
 				}
 				decoder.getFrameInfo();
-				const decodedBuffer = decoder.getDecodedBuffer();
-				return resolve(new DataView(decodedBuffer));
+				const decoded = decoder.getDecodedBuffer();
+				return resolve(decoded as unknown as DataView); // TODO: consider using ArrayBuffer instead of casting to DataView
 			});
 		});
 	}

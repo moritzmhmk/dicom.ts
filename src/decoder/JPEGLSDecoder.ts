@@ -24,7 +24,7 @@ class JPEGLosslessDecoder extends Decoder {
 				decoder.decode();
 
 				const decoded = decoder.getDecodedBuffer();
-				return resolve(new DataView(decoded));
+				return resolve(decoded as unknown as DataView); // TODO: consider using ArrayBuffer instead of casting to DataView
 			});
 		});
 	}
