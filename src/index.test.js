@@ -83,9 +83,9 @@ describe("dicom.ts", () => {
 		// });
 		// console.log(str);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("5aa04e5e3284c640a2f16448e0a11a7a371ef23a");
+		expect(shaFromBuffer(buffer)).toEqual("da1ce51ba1fa6c2c978313ab6d928fe62757c1a4");
 	});
 
 	it("Renders with: RLE decode and greyscale window render", async () => {
@@ -97,9 +97,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("c8feb95390b3df788eb7fe227afb92e5febfb04e");
+		expect(shaFromBuffer(buffer)).toEqual("1b7c395eb25578843b5bfb145846bfa215e6977f");
 	});
 
 	it("Renders with: RLE decode and RGB render", async () => {
@@ -111,9 +111,9 @@ describe("dicom.ts", () => {
 		await renderer.render(image, 0);
 		// logImageTags(image);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("60388cc0984e94d685f985ee0e343224056afb26");
+		expect(shaFromBuffer(buffer)).toEqual("4b1680cfde967d0e1d1c0fcd110d69b796d6d2be");
 	});
 
 	it("Renders with: uncompressed greyscale with LUT descriptor", async () => {
@@ -124,9 +124,8 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
-		fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("07c8030befd36cd9b865c925535f6a8fe589807c");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("8ed96225c71e6f20ed7b5928637d797ac65920df");
 	});
 
 	it("Renders with: jpeg lossless", async () => {
@@ -137,9 +136,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("d4e46bed71c91bbaafd0fb796ac90e81b5294d7d");
+		expect(shaFromBuffer(buffer)).toEqual("b3ae869e6d0e478f66877c55654296f76e8375ee");
 	});
 
 	it("Renders with: jpeg baseline 8bit (native decoder?)", async () => {
@@ -150,9 +149,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("0740edb1140d933966d64754e1b9d0d01db6541c");
+		expect(shaFromBuffer(buffer)).toEqual("5ca2e81cf09465e2dcdb69ebdb31195044feba43");
 	});
 
 	it("Renders with: jpeg baseline", async () => {
@@ -163,9 +162,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("7aaa0be4c1ce96dc328f409ad32f219610ca2ccb");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("7c06974e5259ec69e2b1f6e4d3c4284bd25f51c1");
 	});
 
 	it("Renders with: jpeg LS", async () => {
@@ -176,9 +175,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("470d10cb08f88ecb07857892c0e58f89b9b69d28");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("7b85dff0595fe53312cd5c01843f4947f4b41717");
 	});
 
 	it("Renders with: jpeg2000 lossy", async () => {
@@ -189,9 +188,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("c03ac6dfd8cb9811d20ad0f80dd14546bfad7b86");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("e8e17ceb10e97dbedaadc2926f8b60e6284745ea");
 	});
 
 	// issues
@@ -204,9 +203,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("f79e6eca4c29f6ad4cb152c9f2c532fbe9078c63");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("a9ca4d2c9436dd9811401ff11c222bbef53c7c99");
 	});
 
 	it("Renders all frames ok, reuses program", async () => {
@@ -221,11 +220,11 @@ describe("dicom.ts", () => {
 			// eslint-disable-next-line no-await-in-loop
 			await renderer.render(image, i);
 
-			const buffer = canvas.toBuffer("image/png");
+			const buffer = canvas.toBuffer("raw");
 			// fs.writeFileSync(`./image${i}.png`, buffer);
 			sha = shaFromJSON(sha + buffer);
 		}
-		expect(sha).toEqual("498a9871b098ff8781187513a5a40d00e8c344dc");
+		expect(sha).toEqual("c0d82c4e798f73aabb4a2962e6540bda777629af");
 	});
 
 	it("Resizes ok", async () => {
@@ -236,9 +235,9 @@ describe("dicom.ts", () => {
 		await dicomjs.render(image, canvas, 0.5);
 
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("e0b8b46923d56477a32b226273bb51bfa6dc7c53");
+		expect(shaFromBuffer(buffer)).toEqual("d35466c9ce981f7a22d39043145651bcc966ab14");
 	});
 
 	it("Renders with palette conversion", async () => {
@@ -249,9 +248,9 @@ describe("dicom.ts", () => {
 		await dicomjs.render(image, canvas);
 
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("fa93934a7ca2b9f88cd9c14a80898aa5ed4ce70e");
+		expect(shaFromBuffer(buffer)).toEqual("df184a8d047cd12559e718fde2f257f0e216b794");
 	});
 
 	it("Renders buffer size issue #19", async () => {
@@ -262,9 +261,9 @@ describe("dicom.ts", () => {
 		await dicomjs.render(image, canvas);
 
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("4dafa216bd61e48c38e0c15ebbb45e65aac7634c");
+		expect(shaFromBuffer(buffer)).toEqual("bb623c71866709fa9621744318587a81fa1bfef1");
 	});
 
 	it("Renders RGB with planar configuration", async () => {
@@ -275,9 +274,9 @@ describe("dicom.ts", () => {
 		await dicomjs.render(image, canvas);
 
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("f8bce5cca7c5c3f5258c524f43a037480763e167");
+		expect(shaFromBuffer(buffer)).toEqual("25776c0785c1c12b999e737d5f2e06ee85a43f3b");
 	});
 
 	it("Renders with min/max pixel (no window) values", async () => {
@@ -289,9 +288,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("d1d0bd3240ce6861e79405498ec8716b1269beb3");
+		const buffer = canvas.toBuffer("raw");
+		expect(shaFromBuffer(buffer)).toEqual("2b609351f2edc15298e9b02d0d9abfaa1a9455d6");
 	});
 
 	it("Renders with no transfer syntax, planar & palette size ratio", async () => {
@@ -303,9 +302,9 @@ describe("dicom.ts", () => {
 		const renderer = new dicomjs.Renderer(canvas);
 		await renderer.render(image, 0);
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("add430b59b054ac6a7fd53e7ccbf103aa4fb844a");
+		expect(shaFromBuffer(buffer)).toEqual("2fa9ec116d91b7b95a1d1ea9448c4e22038c8ac4");
 	});
 
 	it("Fails gracefully when no pixel data", async () => {
@@ -351,8 +350,8 @@ describe("dicom.ts", () => {
 		expect(error.message).toEqual("No JPEG-LS image data");
 
 		expect(image).toBeTruthy();
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer("raw");
 		// fs.writeFileSync("./image.png", buffer);
-		expect(shaFromBuffer(buffer)).toEqual("e57fae79bac8f46ea6e3d72aef53da94dd830660");
+		expect(shaFromBuffer(buffer)).toEqual("e9a95dcc1e9a562a5bf43d67c5d1274c63917932");
 	});
 });
