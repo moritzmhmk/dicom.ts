@@ -8,15 +8,8 @@ class RLEDecoder extends Decoder {
 	protected decode(frameNo: number): Promise<DataView> {
 		const { image } = this;
 		if (!this.rleData) {
-			const encapTags = getEncapsulatedData(image.data);
-			const numTags = encapTags?.length || 0;
-			const data = new Array(numTags);
-			// the first sublist item contains offsets - ignore
-			for (let ctr = 1; ctr < numTags; ctr += 1) {
-				const dataView = encapTags[ctr].rawValue as DataView;
-				data[ctr - 1] = dataView;
-			}
-			this.rleData = data;
+			const data = getEncapsulatedData(image.data);
+			this.rleData = data.slice(1); // skip the first item - only contains offsets
 
 			// don't decode to planar...just makes render more complex
 			// RLE input is the same either way
